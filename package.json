@@ -8,7 +8,7 @@
   "homepage": "https://github.com/kwsjs/kws",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kwsjs/kws.git"
+    "url": "git+https://github.com/kwsjs/kws.git"
   },
   "bugs": {
     "url": "https://github.com/kwsjs/kws/issues"
