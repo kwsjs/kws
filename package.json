@@ -4,6 +4,7 @@
   "author": "Daniel Lucas <dluc18@gmail.com>",
   "module": "index.ts",
   "type": "module",
+  "license": "MIT",
   "homepage": "https://github.com/kwsjs/kws",
   "repository": {
     "type": "git",
