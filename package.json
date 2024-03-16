@@ -1,11 +1,12 @@
 {
   "name": "kws",
-  "version": "0.0.0",
-  "author": "Daniel Lucas <dluc18@gmail.com>",
-  "module": "index.ts",
+  "description": "A web framework based on uWebSocket.js",
+  "version": "1.0.0-alpha.1",
+  "main": "index.ts",
   "type": "module",
   "license": "MIT",
   "homepage": "https://github.com/kwsjs/kws",
+  "author": "Daniel Lucas <dluc18@gmail.com> (https://github.com/daniel-lucas-silva)",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kwsjs/kws.git"
@@ -13,8 +14,33 @@
   "bugs": {
     "url": "https://github.com/kwsjs/kws/issues"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "keywords": [
+    "web",
+    "app",
+    "http",
+    "uWebSockets.js",
+    "framework",
+    "middleware"
+  ],
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun build.ts",
+    "format": "prettier --check \"src/**/*.{js,ts}\"",
+    "format:fix": "prettier --write \"src/**/*.{js,ts}\"",
+    "release:local": "npm run build && npm run test && npm publish",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.43.0"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "prettier": "^3.2.5"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

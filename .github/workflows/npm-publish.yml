@@ -4,30 +4,59 @@
 name: Node.js Package
 
 on:
+  push:
+    branches: [master, next]
+  pull_request:
+    branches: ["*"]
   release:
     types: [created]
 
 jobs:
   build:
+    name: "Build"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
         with:
-          node-version: 16
-      - run: npm ci
-      - run: npm test
+          bun-version: latest
+
+      - name: "Install packages"
+        run: bun install
+
+      - name: "Format code"
+        run: bun run format
+
+      - name: "Build code"
+        run: bun run build
+
+      - name: "Test"
+        run: bun run test
 
   publish-npm:
+    name: "Publish: npm Registry"
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+
+      - name: "Setup Bun"
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
+          bun-version: latest
+          registry-url: "https://registry.npmjs.org"
+
+      - name: "Install packages"
+        run: bun install
+
+      - name: "Build code"
+        run: bun run build
+
+      - name: "Test"
+        run: bun run test
+
+      - name: "Publish to NPM"
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: |
+          npm publish --access=public
