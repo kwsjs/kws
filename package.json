@@ -1,7 +1,17 @@
 {
   "name": "kws",
+  "version": "0.0.0",
+  "author": "Daniel Lucas <dluc18@gmail.com>",
   "module": "index.ts",
   "type": "module",
+  "homepage": "https://github.com/kwsjs/kws",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kwsjs/kws.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kwsjs/kws/issues"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
